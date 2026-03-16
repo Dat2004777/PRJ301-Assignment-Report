@@ -145,24 +145,75 @@
 
         /* 5. ĐẢM BẢO TRANG BÌA VÀ MỤC LỤC TRÊN 1 TRANG RIÊNG */
         .full-page-section {
-            min-height: 250mm; /* Giảm xuống để tránh tràn trang gây trang trắng */
+            min-height: 250mm;
+            /* Giảm xuống để tránh tràn trang gây trang trắng */
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Căn giữa nội dung theo chiều dọc */
+            justify-content: center;
+            /* Căn giữa nội dung theo chiều dọc */
         }
 
         /* 6. KHUNG CHÈN ẢNH (IMAGE PLACEHOLDER) */
         .image-box {
-            border: 2px dashed #003366;
+            border: none;
             background-color: #f4f7f9;
             text-align: center;
             padding: 30px 20px;
             margin: 20px 0;
             color: #555;
+        }
+
+        .image-box p {
+            font-size: 11pt;
+            color: #3a3a3a;
+            text-align: center;
+            margin-top: 20px;
             font-style: italic;
         }
 
-        /* 7. ĐỊNH DẠNG TIÊU ĐỀ VÀ BẢNG BIỂU */
+        /* 7. DYNAMIC TABLE OF CONTENT */
+        #toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        #toc>ul {
+            padding-left: 0;
+        }
+
+        #toc li {
+            margin-bottom: 8px;
+        }
+
+        #toc a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        #toc a:hover {
+            color: #003366;
+            text-decoration: underline;
+        }
+
+        #toc .toc-h2 {
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 14pt;
+        }
+
+        #toc .toc-h3 {
+            font-size: 13pt;
+            margin-left: 15px;
+        }
+
+        #toc .toc-h4 {
+            font-size: 12pt;
+            margin-left: 30px;
+            color: #555;
+        }
+
+        /* 8. ĐỊNH DẠNG TIÊU ĐỀ VÀ BẢNG BIỂU */
         h1 {
             font-size: 18pt;
             color: #003366;
@@ -247,19 +298,23 @@
     <div class="a4-page">
         <!-- COVER SECTION -->
         <div class="page-break full-page-section" style="text-align: center;">
-            <div style="margin-bottom: 40mm;">
-                <p
-                    style="font-size: 18pt; font-weight: bold; text-align: center; color: #003366; text-transform: uppercase;">
-                    TRƯỜNG ĐẠI HỌC FPT
-                </p>
+            <div style="margin-bottom: 20mm;">
+                <a href="https://daihoc.fpt.edu.vn/" target="_blank">
+                    <img src="https://daihoc.fpt.edu.vn/wp-content/themes/fpt-university/assets/images/logo.png"
+                        alt="FPT Logo" style="width: 300px; margin-bottom: 20px;">
+                </a>
                 <h1 style="font-size: 22pt; margin-top: 40px;">Requirement Design Specification PRJ301</h1>
+
+            </div>
+            <div>
                 <h2 style="border: none; margin-top: 10px; font-size: 18pt; text-align: center;">
                     Vehicle Parking System
                 </h2>
+                <p style="text-align: center;"><strong>Version:</strong> 1.0</p>
+
             </div>
 
             <div style="font-size: 14pt;">
-                <p style="text-align: center;"><strong>Version:</strong> 1.0</p>
                 <p style="text-align: center;"><strong>Group:</strong> 7</p>
                 <div style="display: inline-block; text-align: left; margin-top: 20px;">
                     <p style="margin: 5px 0;"><strong>Members:</strong></p>
@@ -273,45 +328,8 @@
 
         <!-- TABLE OF CONTENT -->
         <div class="page-break full-page-section">
-
             <h2>Table of Content</h2>
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li><strong>I. Overview</strong></li>
-                <li><strong>1. User Requirements</strong>
-                    <ul style="list-style-type: none; padding-left: 20px;">
-                        <li>1.1 Actors</li>
-                        <li>1.2 Use Cases
-                            <ul style="list-style-type: none; padding-left: 20px;">
-                                <li>a. Diagram(s)</li>
-                                <li>b. Descriptions</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><strong>2. Overall Functionalities</strong>
-                    <ul style="list-style-type: none; padding-left: 20px;">
-                        <li>2.1 Screens Flow</li>
-                        <li>2.2 Screen Descriptions</li>
-                        <li>2.3 Screen Authorization</li>
-                    </ul>
-                </li>
-                <li><strong>3. System High Level Design</strong>
-                    <ul style="list-style-type: none; padding-left: 20px;">
-                        <li>3.1 Database Schema</li>
-                        <li>3.2 Table Descriptions</li>
-                    </ul>
-                </li>
-                <li><strong>II. Web Application</strong></li>
-                <li><strong>III. Students Contribution</strong></li>
-                <li><strong>IV. Appendix</strong>
-                    <ul style="list-style-type: none; padding-left: 20px;">
-                        <li>4.1 Assumptions & Dependencies</li>
-                        <li>4.2 Limitations & Exclusions</li>
-                        <li>4.3 Business Rules</li>
-                    </ul>
-                </li>
-            </ul>
-
+            <div id="toc"></div>
         </div>
 
         <!-- I. OVERVIEW -->
@@ -395,9 +413,11 @@
             <p><strong>a. Diagram(s)</strong></p>
             <div class="image-box">
                 <a href="src-img/fig_1_use_case.png" target="_blank">
-                    <img src="src-img/fig_1_use_case.png" alt="Overall System Use Case Diagram" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_1_use_case.png" alt="Overall System Use Case Diagram"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Figure 1. Overall System Use Case Diagram</p>
+                <p>Figure 1. Overall System Use Case Diagram
+                </p>
             </div>
         </div>
 
@@ -956,9 +976,10 @@
             <h3>3.1 Database Schema</h3>
             <div class="image-box">
                 <a href="src-img/fig_2_erd.png" target="_blank">
-                    <img src="src-img/fig_2_erd.png" alt="Database Schema Diagram" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_2_erd.png" alt="Database Schema Diagram"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 2. Sơ đồ cơ sở dữ liệu (Database Schema)</p>
+                <p>Figure 2. Database Schema Diagram</p>
             </div>
         </div>
 
@@ -1050,7 +1071,8 @@
         <div class="page-break"></div>
 
         <h2 class="section-header">II. Web Application</h2>
-        <p>Phần này mô tả chi tiết giao diện người dùng và các trường dữ liệu tương ứng trên từng màn hình của hệ thống.
+        <p>This section provides detailed descriptions of the user interfaces and corresponding data fields for each
+            system screen.
         </p>
 
         <h3>2.1. Customer</h3>
@@ -1061,7 +1083,7 @@
                 <a href="src-img/fig_3_login.png" target="_blank">
                     <img src="src-img/fig_3_login.png" alt="Customer Login Page" style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 3. Giao diện Đăng nhập của Khách hàng</p>
+                <p>Figure 3. Customer Login interface</p>
             </div>
             <table>
                 <thead>
@@ -1098,7 +1120,7 @@
                 <a href="src-img/fig_4_home.png" target="_blank">
                     <img src="src-img/fig_4_home.png" alt="Customer Home Page" style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 4. Giao diện Trang chủ sau khi Đăng nhập</p>
+                <p>Figure 4. Customer Homepage after Login</p>
             </div>
             <table>
                 <thead>
@@ -1144,9 +1166,11 @@
             <h4>2.1.3. Customer Profile</h4>
             <div class="image-box">
                 <a href="src-img/fig_5_profile.png" target="_blank">
-                    <img src="src-img/fig_5_profile.png" alt="Customer Profile Page" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_5_profile.png" alt="Customer Profile Page"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 5. Giao diện Cập nhật Hồ sơ Khách hàng</p>
+                <p>Figure 5. Customer Profile Update interface
+                </p>
             </div>
             <table>
                 <thead>
@@ -1210,9 +1234,11 @@
             <h4>2.1.4. Vehicle & Session Details</h4>
             <div class="image-box">
                 <a href="src-img/fig_6_vehicle_session.png" target="_blank">
-                    <img src="src-img/fig_6_vehicle_session.png" alt="Vehicle & Session Details" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_6_vehicle_session.png" alt="Vehicle & Session Details"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 6. Giao diện Thông tin Xe và Phiên đỗ xe</p>
+                <p>Figure 6. Vehicle and Parking Session
+                    interface</p>
             </div>
         </div>
         <table>
@@ -1275,9 +1301,11 @@
             <h4>2.2.1. Staff Dashboard (Vehicle Check-in / Check-out)</h4>
             <div class="image-box">
                 <a href="src-img/fig_7_staff_dashboard.png" target="_blank">
-                    <img src="src-img/fig_7_staff_dashboard.png" alt="Staff Dashboard" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_7_staff_dashboard.png" alt="Staff Dashboard"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 7. Giao diện Quản lý Check-in / Check-out</p>
+                <p>Figure 7. Check-in / Check-out Management
+                    interface</p>
             </div>
         </div>
         <table>
@@ -1335,11 +1363,26 @@
         <div class="content-block">
             <h4>2.2.2. Vehicle Query / Search</h4>
             <div class="image-box">
-                <a href="src-img/fig_8_vehicle_search.png" target="_blank">
-                    <img src="src-img/fig_8_vehicle_search.png" alt="Vehicle Search" style="max-width: 100%; height: auto;">
+                <a href="src-img/fig_8_1_vehicle_search.png" target="_blank">
+                    <img src="src-img/fig_8_1_vehicle_search.png" alt="Vehicle Search"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 8. Giao diện Tra cứu và Tìm kiếm phương tiện</p>
+
+                <p>Figure 8.1. Vehicle Lookup and Search
+                    interface</p>
             </div>
+
+            <div class="image-box">
+                <a href="src-img/fig_8_2_vehicle_search.png" target="_blank">
+                    <img src="src-img/fig_8_2_vehicle_search.png" alt="Vehicle Search"
+                        style="max-width: 100%; height: auto;">
+                </a>
+
+                <p>Figure 8.2. Vehicle Lookup and Search
+                    interface</p>
+            </div>
+
+
         </div>
         <table>
             <thead>
@@ -1382,9 +1425,11 @@
             <h4>2.2.3. Subscription Management</h4>
             <div class="image-box">
                 <a href="src-img/fig_9_staff_subscription.png" target="_blank">
-                    <img src="src-img/fig_9_staff_subscription.png" alt="Subscription Management" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_9_staff_subscription.png" alt="Subscription Management"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 9. Giao diện Quản lý Vé tháng / Đăng ký mới</p>
+                <p>Figure 9. Monthly Subscription Management
+                    interface</p>
             </div>
         </div>
         <table>
@@ -1447,9 +1492,11 @@
             <h4>2.2.4. Local Parking History</h4>
             <div class="image-box">
                 <a href="src-img/fig_10_parking_history.png" target="_blank">
-                    <img src="src-img/fig_10_parking_history.png" alt="Parking History" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_10_parking_history.png" alt="Parking History"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 10. Giao diện Lịch sử Giao dịch tại bãi đỗ</p>
+                <p>Figure 10. Parking Transaction History
+                    interface</p>
             </div>
             <table>
                 <thead>
@@ -1501,9 +1548,10 @@
             <h4>2.3.1. Manager Dashboard</h4>
             <div class="image-box">
                 <a href="src-img/fig_11_manager_dashboard.png" target="_blank">
-                    <img src="src-img/fig_11_manager_dashboard.png" alt="Manager Dashboard" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_11_manager_dashboard.png" alt="Manager Dashboard"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 11. Giao diện Tổng quan (Dashboard) của Manager</p>
+                <p>Figure 11. Manager Dashboard interface</p>
             </div>
             <table>
                 <thead>
@@ -1573,9 +1621,10 @@
             <h4>2.3.2. Site Detail</h4>
             <div class="image-box">
                 <a href="src-img/fig_12_manager_site.png" target="_blank">
-                    <img src="src-img/fig_12_manager_site.png" alt="Manager Site Detail" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_12_manager_site.png" alt="Manager Site Detail"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 12. Giao diện Chi tiết Bãi đỗ (Site Detail)</p>
+                <p>Figure 12. Site Detail interface</p>
             </div>
         </div>
         <table>
@@ -1657,9 +1706,10 @@
             <h4>2.3.3. List Employee</h4>
             <div class="image-box">
                 <a href="src-img/fig_13_manager_employees.png" target="_blank">
-                    <img src="src-img/fig_13_manager_employees.png" alt="Manager Employee List" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_13_manager_employees.png" alt="Manager Employee List"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 13. Giao diện Danh sách Nhân viên</p>
+                <p>Figure 13. Employee List interface</p>
             </div>
         </div>
         <table>
@@ -1708,9 +1758,11 @@
             <h4>2.3.4. Subscription</h4>
             <div class="image-box">
                 <a href="src-img/fig_14_manager_subscription.png" target="_blank">
-                    <img src="src-img/fig_14_manager_subscription.png" alt="Manager Subscription Management" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_14_manager_subscription.png" alt="Manager Subscription Management"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 14. Giao diện Quản lý Vé tháng</p>
+                <p>Figure 14. Subscription Management
+                    interface</p>
             </div>
         </div>
         <table>
@@ -1796,9 +1848,11 @@
             <h4>2.3.5. Transaction History</h4>
             <div class="image-box">
                 <a href="src-img/fig_15_manager_transactions.png" target="_blank">
-                    <img src="src-img/fig_15_manager_transactions.png" alt="Manager Transaction History" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_15_manager_transactions.png" alt="Manager Transaction History"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 15. Giao diện Lịch sử Giao dịch</p>
+                <p>Figure 15. Transaction History interface
+                </p>
             </div>
         </div>
         <table>
@@ -1883,9 +1937,10 @@
             <h4>2.4.1. Admin Dashboard</h4>
             <div class="image-box">
                 <a href="src-img/fig_16_admin_dashboard.png" target="_blank">
-                    <img src="src-img/fig_16_admin_dashboard.png" alt="Admin Dashboard" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_16_admin_dashboard.png" alt="Admin Dashboard"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 16. Giao diện Tổng quan (Dashboard) của Admin</p>
+                <p>Figure 16. Admin Dashboard interface</p>
             </div>
         </div>
         <table>
@@ -1910,9 +1965,10 @@
             <h4>2.4.2. List Sites</h4>
             <div class="image-box">
                 <a href="src-img/fig_17_admin_sites.png" target="_blank">
-                    <img src="src-img/fig_17_admin_sites.png" alt="Admin List Sites" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_17_admin_sites.png" alt="Admin List Sites"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 17. Giao diện Danh sách Bãi đỗ</p>
+                <p>Figure 17. Parking Site List interface</p>
             </div>
         </div>
         <table>
@@ -1937,9 +1993,11 @@
             <h4>2.4.3. Add Site</h4>
             <div class="image-box">
                 <a href="src-img/fig_18_admin_add_site.png" target="_blank">
-                    <img src="src-img/fig_18_admin_add_site.png" alt="Admin Add Site" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_18_admin_add_site.png" alt="Admin Add Site"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 18. Giao diện Thêm mới Bãi đỗ</p>
+                <p>Figure 18. Add New Parking Site interface
+                </p>
             </div>
         </div>
         <table>
@@ -2004,9 +2062,11 @@
             <h4>2.4.4. Site Detail, Update, Price Config, Delete Site</h4>
             <div class="image-box">
                 <a href="src-img/fig_19_admin_update_site.png" target="_blank">
-                    <img src="src-img/fig_19_admin_update_site.png" alt="Admin Update/Config Site" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_19_admin_update_site.png" alt="Admin Update/Config Site"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 19. Giao diện Cập nhật và Cấu hình Bãi đỗ</p>
+                <p>Figure 19. Update and Configure Parking
+                    Site interface</p>
             </div>
         </div>
         <table>
@@ -2082,9 +2142,11 @@
             <h4>2.4.5. List Employees</h4>
             <div class="image-box">
                 <a href="src-img/fig_20_admin_employees.png" target="_blank">
-                    <img src="src-img/fig_20_admin_employees.png" alt="Admin Employee List" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_20_admin_employees.png" alt="Admin Employee List"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 20. Giao diện Quản lý Danh sách Nhân viên</p>
+                <p>Figure 20. Employee Management interface
+                </p>
             </div>
         </div>
         <table>
@@ -2114,9 +2176,10 @@
             <h4>2.4.6. Add Employee</h4>
             <div class="image-box">
                 <a href="src-img/fig_21_admin_add_employee.png" target="_blank">
-                    <img src="src-img/fig_21_admin_add_employee.png" alt="Admin Add Employee" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_21_admin_add_employee.png" alt="Admin Add Employee"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 21. Giao diện Thêm mới Nhân viên</p>
+                <p>Figure 21. Add New Employee interface</p>
             </div>
         </div>
         <table>
@@ -2168,9 +2231,11 @@
             <h4>2.4.7. Update, Delete Employee</h4>
             <div class="image-box">
                 <a href="src-img/fig_22_admin_update_employee.png" target="_blank">
-                    <img src="src-img/fig_22_admin_update_employee.png" alt="Admin Update/Delete Employee" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_22_admin_update_employee.png" alt="Admin Update/Delete Employee"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 22. Giao diện Cập nhật/Xóa Nhân viên</p>
+                <p>Figure 22. Update/Delete Employee interface
+                </p>
             </div>
         </div>
         <table>
@@ -2216,9 +2281,11 @@
             <h4>2.4.8. Subscription</h4>
             <div class="image-box">
                 <a href="src-img/fig_23_admin_subscription.png" target="_blank">
-                    <img src="src-img/fig_23_admin_subscription.png" alt="Admin Global Subscription Management" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_23_admin_subscription.png" alt="Admin Global Subscription Management"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 23. Giao diện Quản lý Vé tháng toàn hệ thống</p>
+                <p>Figure 23. System-wide Subscription
+                    Management interface</p>
             </div>
         </div>
         <table>
@@ -2259,9 +2326,11 @@
             <h4>2.4.9. Transaction History</h4>
             <div class="image-box">
                 <a href="src-img/fig_24_admin_transactions.png" target="_blank">
-                    <img src="src-img/fig_24_admin_transactions.png" alt="Admin Global Transaction History" style="max-width: 100%; height: auto;">
+                    <img src="src-img/fig_24_admin_transactions.png" alt="Admin Global Transaction History"
+                        style="max-width: 100%; height: auto;">
                 </a>
-                <p style="font-size: 11pt; color: #888;">Hình 24. Giao diện Lịch sử Giao dịch toàn hệ thống</p>
+                <p style="font-size: 11pt; color: #888; text-align: center;">Figure 24. System-wide Transaction History
+                    interface</p>
             </div>
         </div>
         <table>
@@ -2371,6 +2440,47 @@
         </ul>
 
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tocContainer = document.getElementById('toc');
+            const headings = document.querySelectorAll('h2, h3, h4');
+            const tocList = document.createElement('ul');
+
+            headings.forEach((heading, index) => {
+                // Bi bỏ chính tiêu đề "Table of Content"
+                if (heading.textContent.trim() === "Table of Content" || heading.closest('.full-page-section')) {
+                    if (heading.textContent.trim() !== "Table of Content") return;
+                    if (heading.innerText === "Table of Content") return;
+                }
+
+                // Tránh lấy các h2, h3 trong bìa hoặc mục lục cũ (nếu còn)
+                if (heading.closest('.full-page-section') && heading.textContent.trim() !== "Table of Content") {
+                    // Skip
+                } else if (heading.textContent.trim() === "Table of Content") {
+                    return;
+                }
+
+                const level = heading.tagName.toLowerCase();
+                const title = heading.textContent.trim();
+                const id = 'section-' + index;
+
+                heading.id = id;
+
+                const listItem = document.createElement('li');
+                listItem.className = 'toc-' + level;
+
+                const link = document.createElement('a');
+                link.href = '#' + id;
+                link.textContent = title;
+
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            tocContainer.appendChild(tocList);
+        });
+    </script>
 </body>
 
 </html>
