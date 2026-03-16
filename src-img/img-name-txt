@@ -1,0 +1,24 @@
+Sơ đồ Use Case: fig_1_use_case.png
+Sơ đồ Database (ERD): fig_2_erd.png
+Customer Login: fig_3_login.png
+Customer Home: fig_4_home.png
+Customer Profile: fig_5_profile.png
+Thông tin Xe & Phiên đỗ: fig_6_vehicle_session.png
+Staff Dashboard: fig_7_staff_dashboard.png
+Tra cứu phương tiện: fig_8_vehicle_search.png
+Staff Quản lý Vé tháng: fig_9_staff_subscription.png
+Lịch sử bãi đỗ (Staff): fig_10_parking_history.png
+Manager Dashboard: fig_11_manager_dashboard.png
+Chi tiết Bãi đỗ (Manager): fig_12_manager_site.png
+DS Nhân viên (Manager): fig_13_manager_employees.png
+Quản lý Vé tháng (Manager): fig_14_manager_subscription.png
+Lịch sử Giao dịch (Manager): fig_15_manager_transactions.png
+Admin Dashboard: fig_16_admin_dashboard.png
+DS Bãi đỗ (Admin): fig_17_admin_sites.png
+Thêm Bãi đỗ (Admin): fig_18_admin_add_site.png
+Cập nhật Bãi đỗ (Admin): fig_19_admin_update_site.png
+DS Nhân viên (Admin): fig_20_admin_employees.png
+Thêm Nhân viên (Admin): fig_21_admin_add_employee.png
+Cập nhật Nhân viên (Admin): fig_22_admin_update_employee.png
+Vé tháng hệ thống (Admin): fig_23_admin_subscription.png
+Giao dịch hệ thống (Admin): fig_24_admin_transactions.png
