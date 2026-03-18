@@ -1308,13 +1308,13 @@
         <div class="page-break"></div>
 
         <div class="content-block">
-            <h4>2.1.4. Vehicle & Session Details</h4>
+            <h4>2.1.4. History Subscriptions</h4>
             <div class="image-box">
                 <a href="src-img/fig_6_vehicle_session.png" target="_blank">
                     <img src="src-img/fig_6_vehicle_session.png" alt="Vehicle & Session Details"
                         style="max-width: 100%; height: auto;">
                 </a>
-                <p>Figure 6. Vehicle and Parking Session
+                <p>Figure 6.1. Vehicle and Parking Session
                     interface</p>
             </div>
         </div>
@@ -1328,14 +1328,14 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>cardId</strong></td>
-                    <td class="text-center">String</td>
-                    <td style="text-align: justify;">Unique identifier scanned from the physical RFID parking card.</td>
+                    <td><strong>subscriptions</strong></td>
+                    <td class="text-center">List</td>
+                    <td style="text-align: justify;">Collection of the customer's subscription records.</td>
                 </tr>
                 <tr>
-                    <td><strong>licensePlate</strong></td>
-                    <td class="text-center">String</td>
-                    <td style="text-align: justify;">Alphanumeric license plate of the vehicle (requires validation).
+                    <td><strong>subState</strong></td>
+                    <td class="text-center">Enum/String</td>
+                    <td style="text-align: justify;">The current state of the subscription ('active' or 'expired').
                     </td>
                 </tr>
                 <tr>
@@ -1351,25 +1351,282 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>estimatedFeeInput</strong></td>
-                    <td class="text-center">Long</td>
-                    <td style="text-align: justify;">Hidden field storing the pre-calculated parking fee returned by the
-                        API.</td>
+                    <td><strong>siteId</strong></td>
+                    <td class="text-center">Integer</td>
+                    <td style="text-align: justify;">The unique identifier of the parking site.</td>
                 </tr>
                 <tr>
-                    <td><strong>timeIn</strong></td>
-                    <td class="text-center">Timestamp</td>
-                    <td style="text-align: justify;">Display-only field showing the exact time the vehicle entered the
-                        site.</td>
-                </tr>
-                <tr>
-                    <td><strong>duration</strong></td>
+                    <td><strong>siteName</strong></td>
                     <td class="text-center">String</td>
-                    <td style="text-align: justify;">Display-only field showing the total elapsed parking time.</td>
+                    <td style="text-align: justify;"> The name of the parking site for the subscription.</td>
+                </tr>
+                <tr>
+                    <td><strong>licensePlate</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">The license plate number registered for the subscription.</td>
+                </tr>
+                <tr>
+                    <td><strong>endDate</strong></td>
+                    <td class="text-center">Date</td>
+                    <td style="text-align: justify;">The expiration date of the current subscription.</td>
+                </tr>
+                <tr>
+                    <td><strong>dayRemain</strong></td>
+                    <td class="text-center">Integer</td>
+                    <td style="text-align: justify;">The number of days remaining until the subscription expires.</td>
+                </tr>
+                <tr>
+                    <td><strong>basePrice</strong></td>
+                    <td class="text-center">Long</td>
+                    <td style="text-align: justify;">The base price for 1 month, used dynamically in JS to calculate
+                        renewal plans.</td>
                 </tr>
             </tbody>
         </table>
 
+        <div class="page-break"></div>
+
+        <div class="content-block">
+            <h4>2.1.4. History Bookings</h4>
+            <div class="image-box">
+                <a href="src-img/fig_6_vehicle_booking.png" target="_blank">
+                    <img src="src-img/fig_6_vehicle_booking.png" alt="Vehicle & Session Details"
+                        style="max-width: 100%; height: auto;">
+                </a>
+                <p>Figure 6.2. Vehicle and Booking interface</p>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="20%">Field Name</th>
+                    <th width="20%">Field Type</th>
+                    <th width="60%">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>bookings</strong></td>
+                    <td class="text-center">List</td>
+                    <td style="text-align: justify;">Collection of the customer's bookings records.</td>
+                </tr>
+                <tr>
+                    <td><strong>bookingId</strong></td>
+                    <td class="text-center">Integer</td>
+                    <td style="text-align: justify;">The unique identifier for the booking transaction.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>siteName</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">The name of the parking site where the booking was made.</td>
+                </tr>
+                <tr>
+                    <td><strong>timeIn</strong></td>
+                    <td class="text-center">Date/Timestamp</td>
+                    <td style="text-align: justify;">The expected arrival time of the vehicle
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>bookingAmount</strong></td>
+                    <td class="text-center">Long</td>
+                    <td style="text-align: justify;">The total amount paid or to be paid for the booking.</td>
+                </tr>
+                <tr>
+                    <td><strong>state</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">The current status of the booking (e.g., 'upcoming', 'completed').
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="page-break"></div>
+        <div class="content-block">
+            <h4>2.1.5.Booking Hourly Card</h4>
+            <div class="image-box">
+                <a href="src-img/fig_6_booking.png" target="_blank">
+                    <img src="src-img/fig_6_booking.png" alt="Booking" style="max-width: 100%; height: auto;">
+                </a>
+                <a href="src-img/fig_6_booking_detail.png" target="_blank">
+                    <img src="src-img/fig_6_booking_detail.png" alt="Booking-detail"
+                        style="max-width: 100%; height: auto;">
+                </a>
+                <p>Booking</p>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="20%">Field Name</th>
+                    <th width="20%">Field Type</th>
+                    <th width="60%">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>siteName</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">The name of the parking facility displayed in the hero section.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>address</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">The physical address of the site (also used for Google Maps
+                        embedding).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>vehicles</strong></td>
+                    <td class="text-center">List</td>
+                    <td style="text-align: justify;">A list of vehicle objects supported by the site (e.g., Car,
+                        Motorbike).</td>
+                </tr>
+                <tr>
+                    <td><strong>siteState</strong></td>
+                    <td class="text-center">Enum/String</td>
+                    <td style="text-align: justify;">Current operational status (e.g., OPERATING, MAINTENANCE).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>dateError</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">Server-side validation message displayed if date selection is
+                        invalid.</td>
+                </tr>
+                <tr>
+                    <td><strong>dateIn</strong></td>
+                    <td class="text-center">Date</td>
+                    <td style="text-align: justify;">The scheduled arrival date (Format: yyyy-MM-dd).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>timeIn</strong></td>
+                    <td class="text-center">Time</td>
+                    <td style="text-align: justify;">The scheduled arrival time (Format: HH:mm).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>dateOut</strong></td>
+                    <td class="text-center">Date</td>
+                    <td style="text-align: justify;">The scheduled departure date.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>timeOut</strong></td>
+                    <td class="text-center">Time</td>
+                    <td style="text-align: justify;">The scheduled departure time.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>typeVehicle</strong></td>
+                    <td class="text-center">Intger</td>
+                    <td style="text-align: justify;">The unique identifier (vehicleTypeId) of the selected vehicle
+                        category.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>hour</strong></td>
+                    <td class="text-center">Intger</td>
+                    <td style="text-align: justify;">The calculated total duration in hours (computed via JavaScript).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>price</strong></td>
+                    <td class="text-center">Intger</td>
+                    <td style="text-align: justify;">The base hourly rate for the selected vehicle type.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>totalPrice</strong></td>
+                    <td class="text-center">Intger</td>
+                    <td style="text-align: justify;">The final calculated cost (hour × price).
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="page-break"></div>
+        <div class="content-block">
+            <h4>2.1.6.Buying Mothly Card (Subscriptions)</h4>
+            <div class="image-box">
+                <a href="src-img/fig_6_buying.png" target="_blank">
+                    <img src="src-img/fig_6_buying.png" alt="Buying" style="max-width: 100%; height: auto;">
+                </a>
+                <p>Buying</p>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="20%">Field Name</th>
+                    <th width="20%">Field Type</th>
+                    <th width="60%">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>siteName</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">The name of the parking facility displayed in the header and order
+                        summary.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>address</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">The physical location of the site, used for the address label and
+                        the Google Maps iframe query.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>vehicles</strong></td>
+                    <td class="text-center">List</td>
+                    <td style="text-align: justify;">A list of vehicle objects supported by the site (e.g., Car,
+                        Motorbike).</td>
+                </tr>
+                <tr>
+                    <td><strong>siteId</strong></td>
+                    <td class="text-center">Integer</td>
+                    <td style="text-align: justify;">The unique identifier of the site, used as a hidden parameter for the payment API.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>planType</strong></td>
+                    <td class="text-center">Radio (String)</td>
+                    <td style="text-align: justify;">The subscription duration: month (1 month), quarter (3 months), or year (12 months).</td>
+                </tr>
+                <tr>
+                    <td><strong>licensePlate</strong></td>
+                    <td class="text-center">String</td>
+                    <td style="text-align: justify;">The vehicle's registration plate number, validated via Regex before submission.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>price-month/quarter/year</strong></td>
+                    <td class="text-center">Long</td>
+                    <td style="text-align: justify;">Display labels showing the calculated price per period (K VND) after applying discounts.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>summary-expiry</strong></td>
+                    <td class="text-center">Date</td>
+                    <td style="text-align: justify;">The calculated validity range (e.g., 17/03/2026 - 31/03/2026) based on the chosen plan.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>summary-subtotal</strong></td>
+                    <td class="text-center">Long</td>
+                    <td style="text-align: justify;">The raw total cost before any discounts are applied (BasePrice x Months)
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>summary-total</strong></td>
+                    <td class="text-center">Long</td>
+                    <td style="text-align: justify;">The final amount to be paid after applying the discount rate (10% for Quarter, 17% for Year).
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <div class="page-break"></div>
 
         <h3>2.2. Staff</h3>
